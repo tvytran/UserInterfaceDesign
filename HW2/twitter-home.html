@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap 5.0.2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+            }
+            .header{
+                background-color: lightblue;
+                padding: 20px;
+                text-align: center;
+            }
+            .menu
+            {
+                background-color: lightgray;
+                padding: 10px
+            }
+            .sec-header
+            {
+                padding: 5px;
+                font-size: 24px;
+                
+            }
+
+            /* .img-thumbnail
+            {
+                border: none;
+                width: 100%;
+                display: block;
+                object-fit: cover;
+            } */
+            .title
+            {
+                margin:0;
+                padding: 0;
+            
+            }
+            .featured
+            {
+                font-size: 24px;
+                padding: 40px;
+                text-align: center;
+            }
+            /* .row{
+                width: 100%;
+            } */
+            .menu-tab{
+                padding-left: 20px;
+                
+                /* width: 100px */
+            }
+            .menu{
+                display: flex;
+                /* flex-direction: row; */
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+             /* .dl{
+                display: block;
+             } */
+
+            .container
+            {
+                margin: 0;
+            }
+        </style>
+
+        <body>
+            <div class="header">
+                What's happening
+            </div>
+
+            <div class="menu d-flex justify-content-left">
+                <!-- Home&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;<span class="dl">Submission Deadlines</span>&nbsp;&nbsp;FAQ&nbsp;&nbsp;Contact -->
+                <span class="menu-tab">Home</span>
+                <span class="menu-tab">About</span>
+                <span class="menu-tab">Submission Deadlines</span>
+                <span class="menu-tab">FAQ</span>
+                <span class="menu-tab">Contact</span>
+            </div>
+
+            <div class = "container">
+            <div class = "sec-header"> Section header</div>
+            <div class = "row">
+                <div class = "col-md-6 ">
+                    title1
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Large Image">
+                </div>
+            </div>
+
+
+            <div class="row">  
+                <div class="col-md-3 col-6">
+                    title2
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 1">
+                </div>
+                <div class="col-md-3 col-6">
+                    title3
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 2">
+                </div>
+                <div class="col-md-3 col-6">
+                    title4
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 3">
+                </div>
+
+            </div>
+            <div class="featured">
+                Featured
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-6">
+                    <div class="img-title2">title5</div>
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 5">
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="img-title2">title6</div>
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 6">
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="img-title2">title7</div>
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    Grid Within Grid
+                    <div class="row">
+                        <div class="col-md-4 col-4">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                        </div>
+                        <div class="col-md-4 col-4">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                        </div>
+                        <div class="col-md-4 col-4">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-fluid" alt="Image 7">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </body>
+    </head>
+</html>

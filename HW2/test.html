@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Twitter Home Layout</title>
+    <!-- Bootstrap 5.0.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        .header {
+            background-color: #d3eef9;
+            padding: 20px;
+            text-align: center;
+        }
+        .menu {
+            background-color: #e7e7e7;
+            padding: 10px;
+        }
+        .section-header {
+            margin: 15px 0;
+            margin-left: 20px;
+            font-size: 24px;
+        }
+        .img-thumbnail {
+            width: 100%;
+            height: auto;
+            border: 0;
+            display: block;
+            position: relative;
+        }
+        .image-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+        .img-title {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>What's happening?</div>
+    </div>
+
+    <div class="menu d-flex justify-content">
+        <div class="me-5">Home</div>
+        <div class="me-5">About</div>
+        <div class="me-5">Submission Deadlines</div>
+        <div class="me-5">FAQ</div>
+        <div>Contact</div>
+    </div>
+
+    <div class="co">
+        <div class="section-header">Section header</div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 image-wrapper">
+                <div class="img-title">Large Image</div>
+                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Large Image">
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-3 col-sm-6 image-wrapper">
+                <div class="img-title">Title 1</div>
+                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Image 1">
+            </div>
+            <div class="col-md-3 col-sm-6 image-wrapper">
+                <div class="img-title">Title 2</div>
+                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Image 2">
+            </div>
+            <div class="col-md-3 col-sm-6 image-wrapper">
+                <div class="img-title">Title 3</div>
+                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Image 3">
+            </div>
+        </div>
+
+        <div class="section-header mt-4">Featured</div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 image-wrapper">
+                <div class="img-title">Image 5</div>
+                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Image 5">
+            </div>
+            <div class="col-md-4 col-sm-6 image-wrapper">
+                <div class="img-title">Image 6</div>
+                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Image 6">
+            </div>
+            <div class="col-md-4 col-sm-6 image-wrapper">
+                <div class="img-title">Image 7</div>
+                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Image 7">
+            </div>
+        </div>
+
+        <div class="grid-within-grid mt-3">
+            <div class="row">
+                <div class="section-header">Grid Within Grid</div>
+                <div class="col-md-2 col-sm-2 image-wrapper">
+                    <div class="img-title">Grid Image 1</div>
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Small Grid Image 1">
+                </div>
+                <div class="col-md-2 col-sm-2 image-wrapper">
+                    <div class="img-title">Grid Image 2</div>
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Small Grid Image 2">
+                </div>
+                <div class="col-md-2 col-sm-2 image-wrapper">
+                    <div class="img-title">Grid Image 3</div>
+                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg" class="img-thumbnail" alt="Small Grid Image 3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
