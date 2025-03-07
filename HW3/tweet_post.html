@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            #charCount.negative {
+                color: red;
+                font-weight: bold;
+            }
+            #tweetInput {
+                width: 100%;
+                height: 200px;
+            }
+            #charCount {
+                color: lightgrey;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2 class="header">Post a Tweet</h2>
+        <textarea id="tweetInput" placeholder="Write your tweet here..."></textarea>
+        <br>
+
+        <span id="charCount">30</span> characters remaining
+        <br>
+        <button id="postTweet" disabled>Post Tweet</button>
+
+        <h3>Your Tweets</h3>
+        <div id="tweets"></div>
+
+        <script>
+            const maxChars = 30;
+            const username = "User123";
+
+            $(document).ready(function () {
+                $('#tweetInput').on('input', function () {
+                    let text = $(this).val();
+                    let remain = maxChars - text.length;
+                    let charCount = $('#charCount');
+
+                    charCount.text(remain);
+
+                    if (remain < 0) {
+                        charCount.addClass('negative'); // Ensures red color when over limit
+                        $('#postTweet').prop('disabled', true);
+                    } else {
+                        charCount.removeClass('negative'); // Removes red color if within limit
+                        $('#postTweet').prop('disabled', text.trim() === '');
+                    }
+                });
+
+                $('#tweetInput').keypress(function (event) {
+                    if (event.which === 13) {
+                        event.preventDefault();
+                        $('#postTweet').click();
+                    }
+                });
+
+                $('#postTweet').click(function () {
+                    let text = $('#tweetInput').val().trim();
+                    if (text === "" || text.length > maxChars) return; // Prevent posting over character limit
+
+                    let tweet = `<div class='tweet'><strong>${username}</strong>: ${text}</div>`;
+                    $('#tweets').prepend(tweet);
+
+                    $('#tweetInput').val('').focus();
+                    $('#charCount').text(maxChars).removeClass('negative');
+                    $('#postTweet').prop('disabled', true);
+                });
+            });
+        </script>
+    </body>
+</html>

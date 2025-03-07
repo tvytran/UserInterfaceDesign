@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <!-- JQuery -->
+        <script src=https://code.jquery.com/jquery-3.3.1.min.js crossorigin="anonymous"></script>
+        <!-- Bootstrap 5.0.2 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            #counter{
+                background-color: #f8f9fa;
+                border: 2px solid #007bff;
+                color: #000;
+                
+                border-radius: 5px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+            
+            }
+        </style>
+    </head>
+
+    <script>
+
+        var count = 0 
+
+        function incrementCount(c){
+            return c+1;
+        }
+        $(document).ready(function(){
+        var count = 0;
+        $("#counter").click(function(){
+                count++;
+                console.log("i was clicked " + Math.random());
+                alert("filet mignon");
+            });
+        });
+
+ 
+
+    </script>
+    <body>
+        <button id = "counter" class ="btn">Counter (0)</button>
+    </body>
+</html>
