@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="text-center">Columbia Paper Infinity</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <input type="text" id="client" class="form-control" placeholder="Client">
+        <small class="text-danger" id="client-error"></small>
+    </div>
+    <div class="col-md-3">
+        <input type="text" id="reams" class="form-control" placeholder="# reams">
+        <small class="text-danger" id="reams-error"></small>
+    </div>
+    <div class="col-md-2">
+        <button id="submit" class="btn btn-primary">Submit</button>
+    </div>
+</div>
+
+<hr>
+
+<h2>Sales Records</h2>
+<div id="sales-list"></div>
+
+<hr>
+
+<div id="trash" class="p-3 text-white text-center">Drag sales here to delete</div>
+
+<!-- Pass server data to JavaScript -->
+<script>
+    // These variables are populated by Flask
+    var sales = {{ sales|tojson|safe }};
+    var clients = {{ clients|tojson|safe }};
+</script>
+
+<script src="{{ url_for('static', filename='log_sales.js') }}"></script>
+{% endblock %}
