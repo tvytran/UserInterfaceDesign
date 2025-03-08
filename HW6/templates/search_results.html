@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - Flushing Restaurant Finder{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Search Results for "{{ query }}"</h1>
+
+{% if results %}
+    <div class="row">
+        {% for shop_id, shop in results.items() %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ shop.image }}" class="card-img-top" alt="{{ shop.title }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ shop.title }}</h5>
+                    <p class="card-text">Rating: {{ shop.rating }}/5</p>
+                    <a href="{{ url_for('view_shop', shop_id=shop.id) }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        No results found.
+    </div>
+{% endif %}
+{% endblock %}

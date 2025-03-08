@@ -1,0 +1,41 @@
+/* Main Styles for Flushing Restaurant Finder */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.card {
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Restaurant details page */
+.img-fluid {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Similar restaurants section */
+#similar-restaurants-container .card {
+    margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    #search-input {
+        width: 150px;
+    }
+}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{ shop.title }} - Flushing Restaurant Finder{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <img src="{{ shop.image }}" alt="{{ shop.title }}" class="img-fluid rounded mb-3">
+    </div>
+    <div class="col-md-8">
+        <h1>{{ shop.title }} (Est. {{ shop.year }})</h1>
+        <div class="mb-3">
+            <strong>Rating:</strong> {{ shop.rating }}/5
+        </div>
+        <div class="mb-3">
+            <strong>Price Range:</strong> {{ shop.price_range }}
+        </div>
+        <p class="lead">{{ shop.summary }}</p>
+        
+        <div class="mb-3">
+            <h4>Owner(s):</h4>
+            <ul>
+                {% for owner in shop.owner %}
+                <li>{{ owner }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="mb-3">
+            <h4>Popular Dishes:</h4>
+            <ul>
+                {% for dish in shop.popular_dishes %}
+                <li>{{ dish }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="mb-3">
+            <h4>Specialties:</h4>
+            <ul>
+                {% for specialty in shop.specialties %}
+                <li>{{ specialty }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
