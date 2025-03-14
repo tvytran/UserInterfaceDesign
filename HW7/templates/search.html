@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}VSA Events - Search Results{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Search Results for "{{ query }}"</h1>
+
+{% if results %}
+    <div class="row">
+        {% for event_id, event in results.items() %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ event.image }}" class="card-img-top" alt="{{ event.title }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">{{ event.year }}</p>
+                        <a href="{{ url_for('view', event_id=event.id) }}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        <p>No results found.</p>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }} - VSA Events{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="mb-3">{{ event.title }} ({{ event.year }})</h1>
+        
+        <img src="{{ event.image }}" class="img-fluid mb-4 rounded" alt="{{ event.title }}" style="max-height: 400px; width: 100%; object-fit: cover;">
+        
+        <h4>Description</h4>
+        <p class="mb-4">{{ event.summary }}</p>
+        
+        <!-- Event details section removed as requested -->
+        
+        <h4>Popular Activities</h4>
+        <ul class="list-group mb-4">
+            {% for activity in event.popular_activities %}
+                <li class="list-group-item">{{ activity }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                Quick Info
+            </div>
+            <div class="card-body">
+                <p><strong>Event ID:</strong> {{ event.id }}</p>
+                <p><strong>Year:</strong> {{ event.year }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
