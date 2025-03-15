@@ -1,122 +1,157 @@
-from flask import Flask, render_template, request, redirect, url_for
+{% extends "base.html" %}
 
-app = Flask(__name__)
+{% block title %}Add New Event - VSA Events{% endblock %}
 
-# VSA Events dataset
-events = {
-    "1": {
-        "id": "1",
-        "title": "Paint and Sip",
-        "image": "https://cdn.pixabay.com/photo/2017/08/30/12/45/girl-2696947_1280.jpg",
-        "year": "2025",
-        "summary": "The Vietnamese Student Association proudly presents its Paint and Sip event, a vibrant gathering where creativity meets cultural appreciation. Attendees will enjoy a guided painting session featuring Vietnamese-inspired landscapes or cultural symbols, accompanied by bubble tea and traditional snacks. This event offers students a chance to unwind, socialize, and connect with Vietnamese art in a relaxed atmosphere. All skill levels are welcome, and all materials will be provided for participants.",
-        "popular_activities": ["Guided painting", "Bubble tea tasting", "Cultural discussion", "Photo booth"]
-    },
-    "2": {
-        "id": "2",
-        "title": "Valentine's Day Table",
-        "image": "https://cdn.pixabay.com/photo/2018/01/05/16/24/valentine-3063834_1280.jpg",
-        "year": "2025",
-        "summary": "The Vietnamese Student Association welcomes you to our Valentine's Day tabling event! Stop by our beautifully decorated booth to experience the intersection of Vietnamese culture and the celebration of love. Write love letters using Vietnamese calligraphy, enjoy heart-shaped bánh cookies, and learn about how Valentine's Day is celebrated in Vietnam compared to Western traditions. This interactive event provides a perfect opportunity to learn about cultural expressions of love while enjoying sweet treats and making personalized valentines.",
-        "popular_activities": ["Vietnamese calligraphy", "Cultural comparison discussions", "Heart-shaped bánh cookies", "Photo station"]
-    },
-    "3": {
-        "id": "3",
-        "title": "Tet Celebration",
-        "image": "https://cdn.pixabay.com/photo/2018/05/12/03/18/vietnam-3392154_1280.jpg",
-        "year": "2025",
-        "summary": "Join us for a vibrant celebration of Tet, the Vietnamese Lunar New Year! Our special event features enchanting musical performances from three talented artists of the Vietnamese Creative Society who will showcase traditional and contemporary Vietnamese songs. Immerse yourself in cultural displays including traditional dress (áo dài), lion dances, and festive decorations that symbolize prosperity and good fortune. Guests will enjoy authentic Vietnamese cuisine and participate in cultural activities like red envelope exchanges and traditional games.",
-        "popular_activities": ["Musical performances", "Lion dance", "Traditional food tasting", "Cultural games", "Red envelope exchange"]
-    },
-    "4": {
-        "id": "4",
-        "title": "Study Hall",
-        "image": "https://cdn.pixabay.com/photo/2018/03/31/06/31/people-3277468_1280.jpg",
-        "year": "2025",
-        "summary": "Join the Vietnamese Student Association for our Study Hall event, where productivity meets community! This dedicated study session offers a supportive environment for students to focus on academics while connecting with peers. Fuel your study session with complimentary Vietnamese coffee and snacks that provide the perfect brain boost. Our Study Hall features designated quiet zones, group work areas, and study resources to accommodate different learning styles. VSA officers will be available to provide academic support and facilitate connections between students studying similar subjects.",
-        "popular_activities": ["Quiet study areas", "Group work spaces", "Vietnamese coffee bar", "Tutoring resources"]
-    },
-    "5": {
-        "id": "5",
-        "title": "Poetry Night",
-        "image": "https://cdn.pixabay.com/photo/2023/05/17/15/56/coffee-shop-8000132_1280.jpg",
-        "year": "2024",
-        "summary": "Join us for an enchanting evening at the Vietnamese Student Association's Poetry Night, where words and emotions come alive in a celebration of creative expression. Experience powerful performances featuring both Vietnamese and English poetry that explores themes of identity, diaspora, heritage, and personal journeys. Our welcoming atmosphere encourages all attendees to share their original work during our open mic session, creating a space for diverse voices. The event features ambient music, atmospheric decorations, and Vietnamese tea service that enhances the immersive artistic experience.",
-        "popular_activities": ["Bilingual poetry readings", "Open mic session", "Tea ceremony", "Literary discussions"]
-    },
-    "6": {
-        "id": "6",
-        "title": "Game Night",
-        "image": "https://cdn.pixabay.com/photo/2017/09/08/20/29/chess-2730034_1280.jpg",
-        "year": "2024",
-        "summary": "Join the Vietnamese Student Association for an exciting Game Night filled with fun, laughter, and friendly competition! Experience a diverse selection of games including traditional Vietnamese games like Ô ăn quan and Cờ tướng (Vietnamese chess), alongside popular board games and video game tournaments. Our game stations cater to both competitive players and those seeking casual entertainment in a social setting. Throughout the night, enjoy Vietnamese snacks and refreshments that fuel the gaming experience while creating a festive atmosphere for making new friends.",
-        "popular_activities": ["Traditional Vietnamese games", "Board game competitions", "Video game tournaments", "Snack bar"]
-    },
-    "7": {
-        "id": "7",
-        "title": "Field Day",
-        "image": "https://cdn.pixabay.com/photo/2016/11/29/09/43/field-1868884_1280.jpg",
-        "year": "2024",
-        "summary": "Join the Vietnamese Student Association for our action-packed Field Day event! Participate in a variety of outdoor activities and sports including Vietnamese shuttlecock kicking (đá cầu), relay races, tug-of-war, and volleyball matches designed for all skill levels. Our event promotes physical activity, teamwork, and healthy competition in a welcoming environment. Participants can enjoy refreshing Vietnamese beverages like sugarcane juice and coconut water to stay hydrated throughout the day of outdoor fun and community building.",
-        "popular_activities": ["Đá cầu (shuttlecock kicking)", "Relay races", "Tug-of-war", "Volleyball matches"]
-    },
-    "8": {
-        "id": "8",
-        "title": "Night Market",
-        "image": "https://cdn.pixabay.com/photo/2021/01/05/14/34/hanoi-5892343_1280.jpg",
-        "year": "2023",
-        "summary": "Experience the vibrant sights, sounds, and flavors of Vietnam at the VSA Night Market! Our indoor market recreates the bustling atmosphere of Vietnamese night markets with colorful lanterns, aromatic food stalls, and lively music. Explore vendor booths featuring student entrepreneurs selling crafts, art, and goods inspired by Vietnamese culture. Sample a diverse selection of authentic Vietnamese street foods prepared by VSA members and local restaurants. Cultural demonstrations throughout the evening showcase traditional crafts and performing arts for an immersive experience.",
-        "popular_activities": ["Street food sampling", "Cultural performances", "Vendor shopping", "Lantern making"]
-    },
-    "9": {
-        "id": "9",
-        "title": "ACE Reveal Party",
-        "image": "https://cdn.pixabay.com/photo/2016/11/29/13/24/balloons-1869790_1280.jpg",
-        "year": "2023",
-        "summary": "Join us for the highly anticipated Anh Chi Em (ACE) Family Reveal Party hosted by the Vietnamese Student Association! This special ceremony pairs new VSA members with upperclassmen mentors in our unique family system that provides guidance, friendship, and support throughout the academic year. Experience the excitement as new members discover their ACE families through creative and surprising reveal activities designed to create meaningful connections. The celebration features team-building games, a shared Vietnamese meal, and family photo sessions to commemorate the beginning of these important relationships.",
-        "popular_activities": ["Family reveal ceremony", "Team building games", "Family photos", "Vietnamese banquet"]
-    },
-    "10": {
-        "id": "10",
-        "title": "Mid Autumn Festival",
-        "image": "https://cdn.pixabay.com/photo/2019/09/10/13/46/lantern-festival-4466564_1280.jpg",
-        "year": "2023",
-        "summary": "Join us for the Vietnamese Student Association's Mid-Autumn Festival! Celebrate this important cultural holiday with traditional performances, lantern making, and mooncake tasting. Learn about the mythology and significance behind this harvest festival through interactive displays and storytelling sessions. Children from local Vietnamese-American families will perform traditional dances and songs, creating an authentic community celebration. Participants will create their own paper lanterns, enjoy tea ceremonies, and sample various types of mooncakes in this family-friendly cultural event.",
-        "popular_activities": ["Lantern making", "Mooncake tasting", "Traditional performances", "Storytelling"]
-    }
-}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-3">
+            <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                <h1 class="h4 mb-0">Add New VSA Event</h1>
+                
+                <!-- Success message (hidden by default) -->
+                <div id="success-message" class="alert alert-success py-1 px-3 mb-0 d-none">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <p class="mb-0">New event created. <a id="view-event-link" href="#" class="alert-link">See it here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-# Routes
-@app.route('/')
-def home():
-    # Home page displaying popular events
-    return render_template('home.html', events=events)
-
-@app.route('/search')
-def search():
-    query = request.args.get('query', '').strip()
+<div class="row">
+    <div class="col-md-6">
+        <!-- First column of form fields -->
+        <form id="add-event-form">
+            <div class="row g-2">
+                <div class="col-md-6">
+                    <label for="title" class="form-label small mb-1">Event Title <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-sm" id="title" name="title" required>
+                    <div class="invalid-feedback" id="title-error"></div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="year" class="form-label small mb-1">Year <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control form-control-sm" id="year" name="year" required min="2023" max="2030" value="2025">
+                    <div class="invalid-feedback" id="year-error"></div>
+                </div>
+            </div>
+            
+            <div class="row g-2 mt-2">
+                <div class="col-md-6">
+                    <label for="image" class="form-label small mb-1">Image Path <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-sm" id="image" name="image" required placeholder="/static/images/filename.jpg">
+                    <div class="invalid-feedback" id="image-error"></div>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="location" class="form-label small mb-1">Location <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-sm" id="location" name="location" required placeholder="Hamilton 309, Lerner 555, etc.">
+                    <div class="invalid-feedback" id="location-error"></div>
+                </div>
+            </div>
+            
+            <div class="row g-2 mt-2">
+                <div class="col-12">
+                    <label for="activities" class="form-label small mb-1">Popular Activities <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control form-control-sm" id="activities" name="activities" required placeholder="Cultural performances, Food tasting, Dancing, etc. (comma-separated)">
+                    <div class="invalid-feedback" id="activities-error"></div>
+                </div>
+            </div>
+    </div>
     
-    # Handle empty or whitespace-only searches
-    if not query:
-        return render_template('search.html', results=None, query='')
-    
-    # Search for events containing the query in their title
-    results = {}
-    for event_id, event in events.items():
-        if query.lower() in event['title'].lower():
-            results[event_id] = event
-    
-    return render_template('search.html', results=results, query=query)
+    <div class="col-md-6">
+        <!-- Second column with remaining form fields -->
+        <div class="row g-2">
+            <div class="col-12">
+                <label for="summary" class="form-label small mb-1">Event Summary <span class="text-danger">*</span></label>
+                <textarea class="form-control form-control-sm" id="summary" name="summary" rows="5" required placeholder="Provide a detailed description of at least 20 words..." style="font-size: 0.9rem;"></textarea>
+                <div class="invalid-feedback" id="summary-error"></div>
+            </div>
+        </div>
+        
+        <div class="d-grid mt-3">
+            <button type="submit" class="btn btn-primary btn-sm">Create Event</button>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
 
-@app.route('/view/<event_id>')
-def view(event_id):
-    # Get the event details
-    event = events.get(event_id)
-    
-    if event:
-        return render_template('view.html', event=event)
-    else:
-        return redirect(url_for('home'))
-
-if __name__ == '__main__':
-    app.run(debug=True)
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        // Store the last created event ID
+        var lastCreatedEventId = null;
+        
+        // Focus on the first field when the page loads
+        $('#title').focus();
+        
+        // Handle "See it here" link click
+        $(document).on('click', '#view-event-link', function(e) {
+            if (lastCreatedEventId) {
+                window.location.href = '/view/' + lastCreatedEventId;
+            }
+            return false; // Prevent default behavior
+        });
+        
+        // Handle form submission
+        $('#add-event-form').submit(function(e) {
+            e.preventDefault();
+            
+            // Reset validation styles
+            $('.is-invalid').removeClass('is-invalid');
+            
+            // Gather form data
+            var formData = new FormData(this);
+            
+            // Submit form via AJAX
+            $.ajax({
+                url: '/api/add_event',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        // Store the event ID
+                        lastCreatedEventId = response.id;
+                        
+                        // Show success message
+                        $('#success-message').removeClass('d-none');
+                        
+                        // Update view link with proper URL
+                        $('#view-event-link').attr('href', '/view/' + response.id);
+                        
+                        // Reset form
+                        $('#add-event-form')[0].reset();
+                        
+                        // Focus on the first field
+                        $('#title').focus();
+                    } else {
+                        // Display validation errors
+                        if (response.errors) {
+                            $.each(response.errors, function(field, message) {
+                                if (field === 'general') {
+                                    alert('Error: ' + message);
+                                } else {
+                                    $('#' + field).addClass('is-invalid');
+                                    $('#' + field + '-error').text(message);
+                                }
+                            });
+                            
+                            // Focus on the first field with an error
+                            $('.is-invalid:first').focus();
+                        }
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while submitting the form. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
